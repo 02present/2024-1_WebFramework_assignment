@@ -1,0 +1,12 @@
+{{> header}}
+<h2>회원탈퇴</h2>
+{{#if messages.error}}
+    <p style="color: red;">{{messages.error}}</p>
+{{/if}}
+<h3>정말 탈퇴하시겠습니까?</h3>
+<h4>탈퇴 후에는 계정을 포함한 모든 포트폴리오가 사라지며, 복구할 수 없습니다.</h4>
+<form action="/auth/withdraw" method="POST">
+    <button type="submit">예</button>
+</form>
+<br>
+<a href="/">돌아가기</a>

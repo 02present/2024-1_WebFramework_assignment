@@ -1,0 +1,16 @@
+{{> header}}
+<h2>{{user.username}}의 포트폴리오</h2>
+<a href="/portfolio/add">새로 추가하기</a>
+<ul>
+    {{#each projects}}
+        <li>
+            <h3>{{this.title}}</h3>
+            <p>{{this.description}}</p>
+            <form action="/portfolio/delete/{{this.id}}" method="POST" style="display: inline;">
+                <button type="submit">삭제</button>
+            </form>
+        </li>
+    {{else}}
+        <li>아직 프로젝트가 없으시네요. <p><a href="/portfolio/add">새 프로젝트 추가하기</a></li></p>
+    {{/each}}
+</ul>

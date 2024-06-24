@@ -1,0 +1,11 @@
+<header>
+    <h1>포트폴리오 홈페이지</h1>
+    {{#if user}}
+        <a href="/portfolio">내 포트폴리오</a>
+        <a href="/auth/logout">로그아웃</a>
+        <a href="/auth/withdraw">회원탈퇴</a>
+    {{else}}
+        <a href="/auth/login">로그인</a>
+        <a href="/auth/register">가입</a>
+    {{/if}}
+</header>

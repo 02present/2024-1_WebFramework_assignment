@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>에러 페이지</title>
+    </head>
+    <body>
+        <h1>{{ message }} </h1>
+        <a href="#" id="backLink">뒤로 가기</a>
+
+        <!-- 클릭 시 뒤로 가기 스크립트 -->
+        <script>
+            // backLink 링크를 클릭하면 뒤로 가기
+            document.getElementById('backLink').addEventListener('click', function(event) {
+                event.preventDefault(); // 기본 동작인 href="#"에 의한 이동 방지
+                window.history.back(); // 브라우저 뒤로 가기
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,8 @@
+{{> header}}
+<h2>포트폴리오 홈페이지에 오신 것을 환영합니다</h2>
+{{#if user}}
+    <p>{{user.username}}님 안녕하세요</p>
+    <a href="/portfolio">포트폴리오 보러 가기</a>
+{{else}}
+    <p>환영합니다! <a href="/auth/login">로그인</a> 혹은 <a href="/auth/register">회원가입</a>을 부탁드립니다.</p>
+{{/if}}
