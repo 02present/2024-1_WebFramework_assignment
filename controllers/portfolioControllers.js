@@ -1,16 +1,5 @@
-// controllers/portfolioController.js
 const Project = require('../models/portfolio');
 const User = require('../models/user');
-
-// 프로젝트 보기 함수
-// exports.viewPortfolio = async (req, res) => {
-//     try {
-//         const projects = await Project.findByUserId(req.user.id);
-//         res.render('portfolio', { user: req.user, projects });
-//     } catch (error) {
-//         res.status(500).send('Server error');
-//     }
-// };
 
 exports.portfolioPage = async (req, res) => {
     try {
@@ -47,8 +36,6 @@ exports.deletePortfolio = async (req, res) => {
 
         if (deletedRows === 0) {
             res.render('error', { message: "포트폴리오가 존재하지 않거나, 삭제 권한이 없습니다" });
-        } else {
-            req.flash('success', 'Portfolio deleted successfully');
         }
     } catch (error) {
         console.error('Error deleting portfolio:', error);

@@ -20,7 +20,6 @@ exports.register = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
         await User.create({ username, password: hashedPassword });
-        req.flash('success', 'You are registered and can now log in');
         res.redirect('/auth/login');
     } catch (error) {
         res.render('error', { message: `오류 발생! ${error.message}` });
@@ -34,15 +33,13 @@ exports.loginPage = (req, res) => {
 exports.login = passport.authenticate('local', {
     successRedirect: '/portfolio',
     failureRedirect: '/auth/login',
-    failureFlash: true
 });
 
 // Updated logout method
 exports.logout = (req, res) => {
     req.logout((err) => {
         if (err) {
-            req.flash('error', 'Failed to logout.');
-            return res.redirect('/');
+            return res.render('error', { message: "로그아웃에 실패하였습니다." });
         }
         res.redirect('/');
     });
@@ -53,8 +50,7 @@ exports.withdrawPage = (req, res) => {
 };
 
 exports.withdraw = async (req, res) => {
-    if (!req.user) {
-        req.flash('error', 'You must be logged in to delete your account.');
+    if (!req.user) { //로그인이 안된 상태
         return res.redirect('/auth/login');
     }
 
@@ -70,15 +66,13 @@ exports.withdraw = async (req, res) => {
         // 세션 파괴
         req.logout((err) => {
             if (err) {
-                req.flash('error', 'Failed to log out after withdrawal.');
-                return res.redirect('/');
+                return res.render('error', { message: "회원탈퇴에 실패하였습니다." });
             }
-            req.flash('success', 'Account successfully deleted.');
             res.redirect('/');
         });
     } catch (error) {
         console.error('Error deleting account:', error);
-        req.flash('error', 'Server error. Unable to delete account.');
+        res.render('error', { message: "계정 삭제 중 에러발생!" });
         res.redirect('/');
     }
 };
